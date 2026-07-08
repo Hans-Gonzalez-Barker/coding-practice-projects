@@ -2,7 +2,7 @@ def main():
 
     print(
         "Welcome to the temperature and distance converter! We convert between Fahrenheit"
-        "and Celsius, as well as miles and kilometers."
+        " and Celsius, as well as miles and kilometers."
     )
 
     leave = False
@@ -31,27 +31,17 @@ def distance_converter():
             "Enter 'k' for kilometers to miles, or 'm' for miles to kilometers: "
         ).lower()
         if choice == "k":
-            while True:
-                try:
-                    d = float(input("Enter distance in kilometers: "))
-                    break
-                except ValueError:
-                    print("Invalid input, must be a valid number, try again.")
+            value = input_validation("distance", "kilometers")
 
-            answer = round(d * 0.621371)
+            answer = round(value * 0.621371, 2)
 
             print(f"Your distance is {answer} mile(s).")
 
             status = True
         elif choice == "m":
-            while True:
-                try:
-                    d = float(input("Enter distance in miles: "))
-                    break
-                except ValueError:
-                    print("Invalid input, must be a valid number, try again.")
+            value = input_validation("distance", "miles")
 
-            answer = round(d / 0.621371)
+            answer = round(value / 0.621371, 2)
 
             print(f"Your distance is {answer} kilometer(s).")
 
@@ -67,33 +57,32 @@ def temperature_converter():
             "Enter 'c' for celsius to fahrenheit, or 'f' for fahrenheit to celsius: "
         ).lower()
         if choice == "c":
-            while True:
-                try:
-                    temp = float(input("Enter temperature in celsius: "))
-                    break
-                except ValueError:
-                    print("Invalid input, must be a valid number, try again.")
+            value = input_validation("temperature", "celsius")
 
-            answer = round((temp * (9 / 5)) + 32)
+            answer = round((value * (9 / 5)) + 32, 2)
 
             print(f"Your temperature is {answer} fahrenheit.")
 
             status = True
         elif choice == "f":
-            while True:
-                try:
-                    temp = float(input("Enter temperature in fahrenheit: "))
-                    break
-                except ValueError:
-                    print("Invalid input, must be a valid number, try again.")
+            value = input_validation("temperature", "fahrenheit")
 
-            answer = round((temp - 32) * (5 / 9))
+            answer = round((value - 32) * (5 / 9), 2)
 
             print(f"Your temperature is {answer} celsius.")
 
             status = True
         else:
             print("Input not recognized, please try again.")
+
+
+def input_validation(theme, unit):
+    while True:
+        try:
+            temp = float(input(f"Enter {theme} in {unit}: "))
+            return temp
+        except ValueError:
+            print("Invalid input, must be a valid number, try again.")
 
 
 if __name__ == "__main__":
