@@ -1,0 +1,37 @@
+{
+  // --- Formatting: Ruff runs automatically on every save ---
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",        // apply Ruff's auto-fixable lint fixes
+    "source.organizeImports": "explicit" // sort & remove unused imports
+  },
+
+  // --- Python files use Ruff as the formatter ---
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.rulers": [88],   // PEP 8-ish line-length guide
+
+    // --- Kill inline AI ghost-text, but KEEP the Pylance dropdown ---
+    "editor.inlineSuggest.enabled": false    // no whole-line ghost text
+  },
+
+  // If GitHub Copilot is installed, this also silences its ghost text:
+  "github.copilot.enable": {
+    "*": false
+  },
+
+  // --- Pylance: your autofill + lightweight type checking ---
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",   // catches type mistakes as you type
+  "python.analysis.autoImportCompletions": true, // suggest & auto-add imports
+
+  // --- Testing (turn on once you reach the pytest project) ---
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+
+  // --- General editor niceties ---
+  "editor.tabSize": 4,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true
+}
